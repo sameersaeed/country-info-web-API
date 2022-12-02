@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-CountriesApplication<countries>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "app.countries.CountriesApplication",
+            "projectName": "countries",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
