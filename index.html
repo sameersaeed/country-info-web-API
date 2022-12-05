@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <title>Country information</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+   <div class="nav">
+       <h1>Country information</h1>
+            <form class="search-bar">
+                <input type="search" placeholder="Enter a country name"/>
+            </form>
+       </div>
+   </div>
+   <div class="temp-content loading">
+     <div class="loader"></div>
+   </div>
+   <div class="content loading">
+        <div id="map"></div>
+        <img src="" class="location-pic"/>  
+   </div>
+   <div class="content-two loading">
+       <div class="cards">
+            <div class="module one loading">
+                <img src="" class="icon-one" />
+                <div class="capital"></div>
+                <div class="population"></div>
+                <div class="continent"></div>
+                <div class="languages"></div>
+            </div>
+            <div class="module two loading">
+                <div class="weather loading">
+                    <div class="city">Weather in Berlin</div>
+                    <h1 class="temp">51°C</h1>
+                    <img src="" class="icon" />
+                    <div class="description">Cloudy</div>
+                    <div class="humidity">Humidity: 6-%</div>
+                    <div class="wind">Wind speed: 6.2 km/h</div>
+                </div>
+            </div>
+            <div class="module three loading">
+                <h2>Current Time</h2>
+                <div class="time">Current time:</div>
+                <div class="timeZone">Time zone: </div>
+            </div> 
+       </div>
+   </div>
+    <script src="script.js" defer ></script>
+</body>
+</html>
