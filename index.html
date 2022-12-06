@@ -10,32 +10,38 @@
     <div class="topnav">
         <a class="active">Country information</a>
         <div class="search-container">
-            <form name="submitCountry" id="submitCountry">
+            <form name="submitCountry" id="submitCountry" onsubmit="toggleVisibility()">
                 <input type="text" placeholder="Enter a country" id="search">
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
         </div>
     </div>
-    <div id="map"></div>
-    <div class="countryInfo">
-        <img class="location"/>
+    <div class="mapContainer"> 
+        <div class="countryLocation"></div>   
+        <div id="map"></div>
+    </div>
+    <div id="hidden">
         <div hidden class="capitalLatLong"></div>
-        <div class="countryName">Country name</div>
-        <div class="population">Population</div>
-        <div class="languages">Languages spoken</div>
-        <img class="flag"/>
+        <div class="countryName"></div>
+        <div class="population"></div>
+        <div class="languages"></div>
+        <img src="img/transparent.png" class="flag"/>
+        <p class="flagText"></p>
     </div>
-    <div class="capitalInfo">
-        <div class="capitalCity">Capital city</div>
-        <div class="temperature">Temperature</div>
-        <img class="weatherIcon"/>
-        <div class="weatherDescriptionSky">Sky</div>
-        <div class="weatherDescriptionHumidity">Humidity</div>
-        <div class="weatherDescriptionWind">Wind</div>
+    <div id="hidden">
+        <div class="capitalCity"></div>
+        <img src="img/transparent.png" class="location"/>
+        <div class="weatherHeader"></div>
+        <div class="temperature"></div>
+        <div class="weatherTop">
+            <div class="weatherDescriptionSky center"></div>
+            <img src="img/transparent.png" class="weatherIcon center"/>
+        </div>
+        <div class="weatherDescriptionHumidity"></div>
+        <div class="weatherDescriptionWind"></div>
+        <div class="timeInfo">
     </div>
-    <div class="timeInfo">
-        <div class="time">Time</div>
-    </div>
+
 </body>
 <script src="script.js"></script>
 </html>

@@ -10,12 +10,13 @@ let info = {
         const capital = data[0].capital;
         const population = data[0].population;
         const languages = Object.values(data[0].languages).toString().split(",").join(", ");
-        const img = data[0].flags.svg;
+        const flagImg = data[0].flags.svg;
 
         document.querySelector(".capitalLatLong").innerText = capitalLatLong;
         time.fetchTime(capitalLatLong[0], capitalLatLong[1]);
 
         document.querySelector(".countryName").innerText = "Country name: " + name;
+        document.querySelector(".countryLocation").innerText = "Map location of " + name;
         
         document.querySelector(".capitalCity").innerText = "Capital city: " + capital;
         weather.fetchWeather(capital);
@@ -23,7 +24,8 @@ let info = {
         
         document.querySelector(".population").innerText = "Population: " + population;
         document.querySelector(".languages").innerText = "National language(s): " + languages;
-        document.querySelector(".flag").src = img;
+        document.querySelector(".flag").src = flagImg;
+        document.querySelector(".flagText").innerText = "Flag of " + name;
     },
 };
 
@@ -68,8 +70,8 @@ let locationPic = {
         .then((data) => this.displayLocation(data));
     },
     displayLocation: function(data) {
-        const img = data.results[0].urls.regular;
-        document.querySelector(".location").src = img;    
+        const capitalCityImg = data.results[0].urls.regular;
+        document.querySelector(".location").src = capitalCityImg;    
     },
 }
 
@@ -87,6 +89,20 @@ let country = {
     },
 };
 
+let time = {
+    timeApiKey: "OCSOZ9O8BBRO",
+    fetchTime: function(lat, long) {
+        fetch("http://api.timezonedb.com/v2.1/get-time-zone?key=" + this.timeApiKey +
+              "&format=json&by=position&lat="+ lat +"&lng=" + long)
+        .then((response) => response.json())
+        .then((data) => this.displayTime(data));
+    },
+    displayTime: function(data) {
+        const time = data.formatted + " " + data.abbreviation;
+        document.querySelector(".timeInfo").innerText = "Current time in " + data.cityName + ": " + time;
+    },
+}
+
 let weather = {
     weatherApiKey: "e59c10ff0b4b31052d389233c901eeaa",
     fetchWeather: function(cityName) {
@@ -99,31 +115,25 @@ let weather = {
         const { icon, description } = data.weather[0];
         const { temp, humidity } = data.main;
         const { speed } = data.wind;
-        document.querySelector(".temperature").innerText = temp + "°C";
+        document.querySelector(".weatherHeader").innerText = "Current weather in " + data.name + ": "
+        document.querySelector(".temperature").innerText = "Temperature: " + temp + "°C";
+        document.querySelector(".weatherDescriptionSky").innerText = "Sky conditions: " + description;
         document.querySelector(".weatherIcon").src = "http://openweathermap.org/img/wn/" + icon + ".png";
-        document.querySelector(".weatherDescriptionSky").innerText = description;
         document.querySelector(".weatherDescriptionHumidity").innerText = "Humidity: " +  humidity + "%";
         document.querySelector(".weatherDescriptionWind").innerText = "Wind speed: " +  speed  + "km/h ";
     },
 };
-
-let time = {
-    timeApiKey: "OCSOZ9O8BBRO",
-    fetchTime: function(lat, long) {
-        fetch("http://api.timezonedb.com/v2.1/get-time-zone?key=" + this.timeApiKey +
-              "&format=json&by=position&lat="+ lat +"&lng=" + long)
-        .then((response) => response.json())
-        .then((data) => this.displayTime(data));
-    },
-    displayTime: function(data) {
-        const time = data.formatted + " " + data.abbreviation;
-        document.querySelector(".time").innerText = "Current time: " + time;
-    },
-}
 
 document.getElementById("submitCountry").onsubmit = function() {
     var countryInput = document.getElementById("search").value;
     info.fetchInfo(countryInput);
     country.fetchCoords(countryInput);
     return false;
+}
+
+function toggleVisibility() {
+    var hidden = document.getElementById("hidden").value;
+    if (hidden.style.display === 'none') {
+        hidden.style.display = 'content';
+    }
 }
